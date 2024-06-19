@@ -1,0 +1,139 @@
+### Получить все фильмы без фильтрации
+
+GET http://localhost:8080/movie-api/
+accept: application/json
+
+### Загрузить фильмы
+
+POST http://localhost:8080/movie-api/
+accept: application/json
+Content-Type: application/json
+
+[
+  {
+    "name": "Омерзительная восьмерка",
+    "description": "США после Гражданской войны. Легендарный охотник за головами Джон Рут по кличке Вешатель конвоирует заключенную.",
+    "genre": "Вестерн, криминал, детектив",
+    "movieType": "FULL",
+    "releaseDate": "2016-01-14"
+  },
+  {
+    "name": "Министерство неджентльменских дел",
+    "description": "1942 год. На на кону стоит судьба всего мира.",
+    "genre": "Боевик, драма, военный",
+    "movieType": "FULL",
+    "releaseDate": "2024-05-13"
+  },
+  {
+    "name": "А что такое дышать?",
+    "description": "Обычно люди не задумываются о том, что они дышат каждую секунду, каждое мгновенье своей жизни.",
+    "genre": "Документальный",
+    "movieType": "SHORT",
+    "releaseDate": "2020-03-20"
+  },
+  {
+    "name": "Каждый 88?",
+    "description": "Молодой советский солдат погибает на поле боя.",
+    "genre": "Мелодрама, комедия",
+    "movieType": "SHORT",
+    "releaseDate": "2015-10-14"
+  }
+]
+
+### Post запрос с неверным форматом даты
+
+POST http://localhost:8080/movie-api/
+accept: */*
+Content-Type: application/json
+
+[
+  {
+    "name": "Пример фильма с неверно введеной датой",
+    "description": "Сработает исключение",
+    "genre": "Исключение",
+    "movieType": "FULL",
+    "releaseDate": "20-0006-19"
+  }
+]
+
+### Post запрос фильма без наименования
+
+POST http://localhost:8080/movie-api/
+accept: */*
+Content-Type: application/json
+
+[
+  {
+    "description": "Валидация. Фильм без наименовния",
+    "genre": "Валидация",
+    "movieType": "FULL",
+    "releaseDate": "2000-01-07"
+  }
+]
+
+### Post запрос где жанр фильма превышает 100 символов
+
+POST http://localhost:8080/movie-api/
+accept: */*
+Content-Type: application/json
+
+[
+  {
+    "name": "Пример фильма где жанр превышает 100 символов",
+    "description": "Валидация. Минимум 0, максимум 100",
+    "genre": "Азиатский экстрим, Аналоговый хоррор, Анимационно-игровой фильм, Кинофантастика, Комедийная драма, Комедийный боевик, Комедийный триллер,Комедия о возобновлении брака,Комедия по-итальянски, Комедия положений, Комедия ужасов, Концертный фильм, Криминальная драма, Криминальный фильм",
+    "movieType": "FULL",
+    "releaseDate": "2024-01-19"
+  }
+]
+
+### Фильтры по имени, году выпуска, и типу фильма
+
+GET http://localhost:8080/movie-api/?name=Министерство+неджентльменских+дел&releaseYear=2024&movieType=FULL
+accept: application/json
+
+### Фильтр по году выпуска фильма
+
+GET http://localhost:8080/movie-api/?name=Каждый+88?
+accept: application/json
+
+### Фильтр по году выпуска фильма
+
+GET http://localhost:8080/movie-api/?releaseYear=2016
+accept: application/json
+
+### Фильтр по типу фильма. короткометражные фильмы
+
+GET http://localhost:8080/movie-api/?movieType=short
+accept: application/json
+
+### Get запрос фильма по ID
+
+GET http://localhost:8080/movie-api/1/
+accept: application/json
+
+### Get запрос фильма по ID, которого не существует
+
+GET http://localhost:8080/movie-api/100000/
+accept: application/json
+
+### Actuator health-эндпоинт
+
+GET http://localhost:8080/actuator/health
+accept: application/json
+
+### Документация Open API
+
+GET http://localhost:8080/movie-api-docs
+accept: application/json
+
+### Swagger доступен по этому пути
+
+GET http://localhost:8080/swagger
+accept: application/json
+
+
+
+
+
+
